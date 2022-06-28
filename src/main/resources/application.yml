@@ -1,0 +1,34 @@
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo5?createDatabaseIfNotExist=true
+    username: ${USER}
+    password: ${PASSWORD}
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        dialect: ${DB_DIALECT}
+        format_sql: true
+    show-sql: false
+    open-in-view: true
+    hibernate:
+      ddl-auto: create
+  sql:
+    init:
+      mode: always
+  data:
+    rest:
+      detection-strategy: annotated
+jwt:
+  key:
+    private: classpath:app.key
+    public: classpath:app.pub
+debug: false
+logging:
+  level:
+    sql: info
+    web: info
+    org.springframework.security: debug
