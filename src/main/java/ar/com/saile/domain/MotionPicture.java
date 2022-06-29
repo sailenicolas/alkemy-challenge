@@ -24,6 +24,7 @@ import java.util.Collection;
 public class MotionPicture implements Serializable {
     static final String ID = "id";
 
+    @JsonView(Views.SearchMotionPicture.class)
     protected String image;
     @JsonView(Views.SearchMotionPicture.class)
     protected String title;
