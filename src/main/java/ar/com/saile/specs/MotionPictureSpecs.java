@@ -28,37 +28,6 @@ public class MotionPictureSpecs implements Specification<MotionPicture> {
 
     }
 
-    public static Specification<MotionPicture> isLongTermCustomer(String str) {
-
-        return (root, query, criteriaBuilder) -> {
-            List<Predicate> predicates = new ArrayList<>();
-            // TODO: FIX RISK OF INJECTION?
-            predicates.add( criteriaBuilder.like(
-                    criteriaBuilder.lower(
-                            root.get( MotionPicture_.title )
-                    ),
-                    "%" + str.toLowerCase() + "%" ) );
-            //check if the text value can be casted to long.
-            //if it is possible, then add the check to the query
-            try {
-                long longValue = Long.parseLong( str );
-                predicates.add( criteriaBuilder.equal( root.get( MotionPicture_.id ), longValue ) );
-            } catch (NumberFormatException e) {
-                //do nothing, the text is not long
-            }
-
-            //check if the text can be casted to boolean
-            //if it is possible, then add the check to the query
-            Boolean value = "true".equalsIgnoreCase( str ) ? Boolean.TRUE :
-                    "false".equalsIgnoreCase( str ) ? Boolean.FALSE : null;
-            if (value != null) {
-                predicates.add( criteriaBuilder.equal( root.get( "isActive" ), value ) );
-            }
-            return criteriaBuilder.or( predicates.toArray( new Predicate[]{} ) );
-
-        };
-    }
-
     @Override
     public Predicate toPredicate(Root<MotionPicture> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
 
