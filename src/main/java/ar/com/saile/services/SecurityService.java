@@ -21,9 +21,9 @@ public class SecurityService {
 
     public String createToken(UserDetails userDetails, String issuer) {
 
-        LocalDateTime now = LocalDateTime.now().plusHours( 6 );
+        LocalDateTime now = LocalDateTime.now();
         Date expiresAt = new Date();
-        Date expiredAt = new Date( now.toInstant(ZoneOffset.UTC ).toEpochMilli() );
+        Date expiredAt = new Date( now.plusHours( 6 ).toInstant(ZoneOffset.UTC ).toEpochMilli() );
 
         return builder
                 .withNotBefore( expiresAt )

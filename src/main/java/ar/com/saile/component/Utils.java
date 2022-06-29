@@ -14,8 +14,6 @@ public class Utils {
 
         Sort.Direction direction = order.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
         Sort.Order sort = new Sort.Order(direction,"id");
-        System.out.println("order = " + sort);
-        Pageable pageRequest = PageRequest.of(page, 5, by(sort));
-        return pageRequest;
+        return PageRequest.of(page, 5, by(sort));
     }
 }

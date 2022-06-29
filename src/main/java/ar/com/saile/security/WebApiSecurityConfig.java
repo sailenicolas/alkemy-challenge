@@ -17,8 +17,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class WebApiSecurityConfig {
 
-    private final UserRepository userRepository;
-
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
 

@@ -1,6 +1,5 @@
 package ar.com.saile.controllers;
 
-import ar.com.saile.domain.FictionalCharacter;
 import ar.com.saile.domain.MotionPicture;
 import ar.com.saile.exceptions.BindingResultException;
 import ar.com.saile.services.MotionPictureService;
