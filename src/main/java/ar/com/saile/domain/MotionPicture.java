@@ -25,9 +25,9 @@ public class MotionPicture implements Serializable {
     static final String ID = "id";
 
     protected String image;
-
+    @JsonView(Views.SearchMotionPicture.class)
     protected String title;
-
+    @JsonView(Views.SearchMotionPicture.class)
     protected LocalDateTime created;
 
     protected Integer rating;

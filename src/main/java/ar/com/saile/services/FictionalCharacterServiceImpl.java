@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -74,6 +75,17 @@ public class FictionalCharacterServiceImpl implements FictionalCharacterService 
     public Page<FictionalCharacter> findAll(int page, Map<String, String> search) {
 
         Pageable pageable = Utils.getPageable( page, search.get( "order" ) );
-        return characterRepository.findAll(new FictionalCharacterSpecs(search), pageable );
+        return characterRepository.findAll(new FictionalCharacterSpecs(search ), pageable );
+    }
+
+    @Override
+    public List<FictionalCharacter> searchAll(int pages, Map<String, String> search) {
+        return characterRepository.findAll(new FictionalCharacterSpecs(search ) );
+    }
+
+    @Override
+    public Page<FictionalCharacter> findAll(int page, String order) {
+        Pageable pageable = Utils.getPageable( page, order );
+        return characterRepository.findAll(pageable);
     }
 }

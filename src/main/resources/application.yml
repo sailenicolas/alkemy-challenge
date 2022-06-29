@@ -40,7 +40,7 @@ logging:
   level:
     sql: info
     web: info
-    org.springframework.security: debug
+    org.springframework: debug
 app:
   url: jdbc:mysql://localhost:3306/demo5?createDatabaseIfNotExist=true
 ---

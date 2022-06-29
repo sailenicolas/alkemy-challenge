@@ -1,11 +1,8 @@
 package ar.com.saile.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import ar.com.saile.views.Views;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
-import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
@@ -30,7 +27,7 @@ public class FictionalCharacter implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = ID_COLUMN, nullable = false)
     private Long id;
-
+    @JsonView(Views.SearchCharacter.class)
     private String name;
     private String history;
     private Integer age;

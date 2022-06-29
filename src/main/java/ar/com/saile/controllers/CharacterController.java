@@ -4,6 +4,8 @@ import ar.com.saile.component.FictionalPathTypeVariable;
 import ar.com.saile.domain.FictionalCharacter;
 import ar.com.saile.exceptions.BindingResultException;
 import ar.com.saile.services.FictionalCharacterService;
+import ar.com.saile.views.Views;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -20,18 +23,27 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(path = "/")
+@RequestMapping(path = "/characters")
 public class CharacterController {
     private final FictionalCharacterService fictionalCharacterService;
     @GetMapping(path = "")
-    public ResponseEntity<?> getCharacters(
+    @JsonView(Views.SearchCharacter.class)
+    public ResponseEntity<?> searchCharacters(
             @RequestParam(defaultValue = "0", name = "page") int page,
             @RequestParam(defaultValue = "asc", name = "order") String order,
             @RequestParam(defaultValue = "", name = "age", required = false) String age,
             @RequestParam(defaultValue = "", name = "title", required = false) String title,
             @RequestParam(defaultValue = "", name = "movies", required = false) String movies){
         Map<String, String> search = Map.of("order",order, "age",age, "title",title, "movies", movies);
-        Page<FictionalCharacter> series = fictionalCharacterService.findAll(page, search);
+        List<FictionalCharacter> series = fictionalCharacterService.searchAll(page, search);
+        return ResponseEntity.ok(series);
+    }
+
+    @GetMapping(path = "", params = {"!title", "!age", "!movies"})
+    public ResponseEntity<?> getCharacters(
+            @RequestParam(defaultValue = "0", name = "page") int page,
+            @RequestParam(defaultValue = "asc", name = "order") String order){
+        Page<FictionalCharacter> series = fictionalCharacterService.findAll(page, order);
         return ResponseEntity.ok(series);
     }
 

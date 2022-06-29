@@ -6,6 +6,7 @@ import ar.com.saile.exceptions.RecordNotFoundException;
 import org.springframework.data.domain.Page;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public interface FictionalCharacterService {
@@ -24,4 +25,6 @@ public interface FictionalCharacterService {
     FictionalCharacter findById(Long id);
 
     Page<FictionalCharacter> findAll(int page, Map<String, String> search);
+    List<FictionalCharacter> searchAll(int pages, Map<String, String> search);
+    Page<FictionalCharacter> findAll(int page, String search);
 }

@@ -1,5 +1,8 @@
 package ar.com.saile.views;
 
 public class Views {
-    public interface SearchView {};
+    public interface SearchCharacter {
+    }
+    public interface SearchMotionPicture {
+    }
 }
