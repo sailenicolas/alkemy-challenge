@@ -1,16 +1,21 @@
 package ar.com.saile.services;
 
 import ar.com.saile.component.FictionalPathTypeVariable;
+import ar.com.saile.component.Utils;
 import ar.com.saile.domain.FictionalCharacter;
 import ar.com.saile.exceptions.NotDeletedException;
 import ar.com.saile.repositories.CharacterRepository;
 import ar.com.saile.repositories.MotionPictureRepository;
 import ar.com.saile.exceptions.RecordNotFoundException;
+import ar.com.saile.specs.FictionalCharacterSpecs;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -63,5 +68,12 @@ public class FictionalCharacterServiceImpl implements FictionalCharacterService 
     public FictionalCharacter findById(Long id) {
 
         return characterRepository.findById(id).orElseThrow(()->new RecordNotFoundException("NOT FOUND"));
+    }
+
+    @Override
+    public Page<FictionalCharacter> findAll(int page, Map<String, String> search) {
+
+        Pageable pageable = Utils.getPageable( page, search.get( "order" ) );
+        return characterRepository.findAll(new FictionalCharacterSpecs(search), pageable );
     }
 }

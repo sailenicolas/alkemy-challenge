@@ -3,8 +3,10 @@ package ar.com.saile.services;
 import ar.com.saile.component.FictionalPathTypeVariable;
 import ar.com.saile.domain.FictionalCharacter;
 import ar.com.saile.exceptions.RecordNotFoundException;
+import org.springframework.data.domain.Page;
 
 import java.util.Collection;
+import java.util.Map;
 
 public interface FictionalCharacterService {
     Collection<FictionalCharacter> CreateByMotioPictureIdAndCharacterId(FictionalPathTypeVariable typed, Long id, Long idCharacter) throws RecordNotFoundException;
@@ -20,4 +22,6 @@ public interface FictionalCharacterService {
     Collection<FictionalCharacter> deleteByMotionPictureIdAndCharacterId(FictionalPathTypeVariable fictionalPathTypeVariable, Long idMotionPicture, Long idCharacter);
 
     FictionalCharacter findById(Long id);
+
+    Page<FictionalCharacter> findAll(int page, Map<String, String> search);
 }

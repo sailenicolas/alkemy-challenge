@@ -5,6 +5,7 @@ import ar.com.saile.domain.FictionalCharacter;
 import ar.com.saile.exceptions.BindingResultException;
 import ar.com.saile.services.FictionalCharacterService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.Map;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -21,6 +23,19 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping(path = "/")
 public class CharacterController {
     private final FictionalCharacterService fictionalCharacterService;
+    @GetMapping(path = "")
+    public ResponseEntity<?> getCharacters(
+            @RequestParam(defaultValue = "0", name = "page") int page,
+            @RequestParam(defaultValue = "asc", name = "order") String order,
+            @RequestParam(defaultValue = "", name = "age", required = false) String age,
+            @RequestParam(defaultValue = "", name = "title", required = false) String title,
+            @RequestParam(defaultValue = "", name = "movies", required = false) String movies){
+        Map<String, String> search = Map.of("order",order, "age",age, "title",title, "movies", movies);
+        Page<FictionalCharacter> series = fictionalCharacterService.findAll(page, search);
+        return ResponseEntity.ok(series);
+    }
+
+
     @GetMapping(path = {"/characters/{id}"})
     public ResponseEntity<?> getFictional(@PathVariable Long id) {
         FictionalCharacter fictionalCharacterCollection = fictionalCharacterService.findById(id);

@@ -12,7 +12,7 @@ spring:
     rest:
       detection-strategy: annotated
   datasource:
-    url: ${DB_URL:jdbc:mysql://localhost:3306/demo5?createDatabaseIfNotExist=true}
+    url: ${URL_DB:${app.url}}
     username: ${USER}
     password: ${PASSWORD}
   jpa:
@@ -41,6 +41,8 @@ logging:
     sql: info
     web: info
     org.springframework.security: debug
+app:
+  url: jdbc:mysql://localhost:3306/demo5?createDatabaseIfNotExist=true
 ---
 debug: false
 spring:
