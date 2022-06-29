@@ -1,0 +1,917 @@
+{
+	"info": {
+		"_postman_id": "e16fa29f-78cb-44a7-8498-db96e3b86e96",
+		"name": "Backend Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "john",
+							"type": "default"
+						},
+						{
+							"key": "",
+							"value": "john",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "john",
+									"type": "default"
+								},
+								{
+									"key": "",
+									"value": "john",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"jwt\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJzdWIiOiJqb2huIiwibmJmIjoxNjU2NTM3MTU5LCJpc3MiOiJsb2NhbGhvc3QiLCJleHAiOjE2NTY1NDc5NTksInVzZXJuYW1lIjoiam9obiJ9.kmsy11pT9Ws4XQD3394eMvXp48OkLh0YjZxU_vMsLANqBF_HMso19NWvdauFoQcXpXivMo9H40QOal58Gj3GKfE4Jij75zX-8fjHMiiNRbQERRYTle12CpqvbbKA0wA3COXgLCxMMEo4fGNxWWoV5MkXZlnUYctAm02mQpGf4nPU1CSITRqjRnG4qoUFpalqC9ZcWXTZjaOntxi5tFeE6f3DcGTtYawDgady56H7uJxyW6udvLf12Nanlvv1jI51Ibzd6hVIR82ojcGPxxjV9Yb-eGnni91GWV4hWrt7BE0cscv4oqYZOFX2mKAoJhUEMS5Hp8-3jt7YxQp-wSk76KA\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Movies Like Name",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN_JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movies?title=serie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "serie"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Movies Like Name",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/movies?title=serie",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "serie"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n    {\r\n        \"image\": null,\r\n        \"title\": \"Serie 1\",\r\n        \"created\": \"2022-06-29T18:12:11.421706\"\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Movies with Genre",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN_JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movies?genre=Comedia",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies"
+					],
+					"query": [
+						{
+							"key": "genre",
+							"value": "Comedia"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Movies with Genre",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/movies?genre=Comedia",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "genre",
+									"value": "Comedia"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\n    {\n        \"image\": null,\n        \"title\": \"Serie 1\",\n        \"created\": \"2022-06-29T18:12:11.421706\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Characters like name",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN_JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/characters?name=juan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "juan"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Characters like name",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/characters?name=juan",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "juan"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\n    {\n        \"name\": \"Juan Carlos\",\n        \"image\": null\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Characters with Age",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN_JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/characters?age=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					],
+					"query": [
+						{
+							"key": "age",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Characters with Age",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/characters?age=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "age",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\n    {\n        \"name\": \"John\",\n        \"image\": null\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Characters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN_JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/characters",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Characters",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/characters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"name\": \"Juan Carlos\",\n            \"history\": \"Juan Carlos es un asalariado sin trabajo\",\n            \"image\": null,\n            \"age\": 3,\n            \"weigh\": 3,\n            \"series\": [\n                {\n                    \"id\": 1,\n                    \"image\": null,\n                    \"title\": \"Serie 1\",\n                    \"created\": \"2022-06-29T18:12:11.421706\",\n                    \"rating\": 1,\n                    \"genres\": [\n                        {\n                            \"id\": 1,\n                            \"name\": \"Comedia\",\n                            \"image\": null,\n                            \"motionPictures\": [\n                                1\n                            ]\n                        }\n                    ],\n                    \"fictionalCharacters\": [\n                        1\n                    ]\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"John\",\n            \"history\": \"John es un civil\",\n            \"image\": null,\n            \"age\": 1,\n            \"weigh\": 1,\n            \"series\": [\n                {\n                    \"id\": 2,\n                    \"image\": null,\n                    \"title\": \"Games of thrones\",\n                    \"created\": \"2022-06-29T18:12:11.44971\",\n                    \"rating\": 5,\n                    \"genres\": [\n                        {\n                            \"id\": 2,\n                            \"name\": \"Dark\",\n                            \"image\": null,\n                            \"motionPictures\": [\n                                2\n                            ]\n                        },\n                        {\n                            \"id\": 3,\n                            \"name\": \"Algo\",\n                            \"image\": \"\",\n                            \"motionPictures\": [\n                                2\n                            ]\n                        }\n                    ],\n                    \"fictionalCharacters\": [\n                        2,\n                        {\n                            \"id\": 3,\n                            \"name\": \"Juan Ismael\",\n                            \"history\": \"Juan Ismael es un asalariado con trabajo\",\n                            \"image\": null,\n                            \"age\": 3,\n                            \"weigh\": 3,\n                            \"series\": [\n                                2\n                            ]\n                        }\n                    ]\n                }\n            ]\n        },\n        3\n    ],\n    \"pageable\": {\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"offset\": 0,\n        \"pageSize\": 5,\n        \"pageNumber\": 0,\n        \"unpaged\": false,\n        \"paged\": true\n    },\n    \"last\": true,\n    \"totalPages\": 1,\n    \"totalElements\": 3,\n    \"size\": 5,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"first\": true,\n    \"numberOfElements\": 3,\n    \"empty\": false\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Characters By Id 1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN_JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/characters/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Movies By Id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/characters/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Juan Carlos\",\n    \"history\": \"Juan Carlos es un asalariado sin trabajo\",\n    \"image\": null,\n    \"age\": 3,\n    \"weigh\": 3,\n    \"series\": [\n        {\n            \"id\": 1,\n            \"image\": null,\n            \"title\": \"Serie 1\",\n            \"created\": \"2022-06-29T18:31:39.52827\",\n            \"rating\": 1,\n            \"genres\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Comedia\",\n                    \"image\": null,\n                    \"motionPictures\": [\n                        1\n                    ]\n                }\n            ],\n            \"fictionalCharacters\": [\n                1\n            ]\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Characters By Id 1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN_JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Juan Cervos\",\r\n    \"history\": \"Juan Carlos es un asalariado sin trabajo\",\r\n    \"image\": null,\r\n    \"age\": 3,\r\n    \"weigh\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/characters/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update Characters By Id 1",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Juan Cervos\",\r\n    \"history\": \"Juan Carlos es un asalariado sin trabajo\",\r\n    \"image\": null,\r\n    \"age\": 3,\r\n    \"weigh\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/characters/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Juan Cervos\",\n    \"history\": \"Juan Carlos es un asalariado sin trabajo\",\n    \"image\": null,\n    \"age\": 3,\n    \"weigh\": 3,\n    \"series\": [\n        {\n            \"id\": 1,\n            \"image\": null,\n            \"title\": \"Serie 1\",\n            \"created\": \"2022-06-29T18:44:37.22157\",\n            \"rating\": 1,\n            \"genres\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Comedia\",\n                    \"image\": null,\n                    \"motionPictures\": [\n                        1\n                    ]\n                }\n            ],\n            \"fictionalCharacters\": [\n                1\n            ]\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Characters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN_JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Juan fernando\",\r\n    \"history\": \"Juan fernando es un asalariado sin trabajo\",\r\n    \"image\": null,\r\n    \"age\": 3,\r\n    \"weigh\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/characters/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Characters",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": null,\r\n    \"title\": \"Serie 1\",\r\n    \"rating\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/characters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": 4,\n    \"name\": \"Juan fernando\",\n    \"history\": \"Juan fernando es un asalariado sin trabajo\",\n    \"image\": null,\n    \"age\": 3,\n    \"weigh\": 3,\n    \"series\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Movies By Id 1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN_JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movies/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Movies By Id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/movies/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"image\": null,\n    \"title\": \"Serie 1\",\n    \"created\": \"2022-06-29T18:12:11.421706\",\n    \"rating\": 1,\n    \"genres\": [\n        {\n            \"id\": 1,\n            \"name\": \"Comedia\",\n            \"image\": null,\n            \"motionPictures\": [\n                1\n            ]\n        }\n    ],\n    \"fictionalCharacters\": [\n        {\n            \"id\": 1,\n            \"name\": \"Juan Carlos\",\n            \"history\": \"Juan Carlos es un asalariado sin trabajo\",\n            \"image\": null,\n            \"age\": 3,\n            \"weigh\": 3,\n            \"series\": [\n                1\n            ]\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Movies By Id 1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN_JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movies/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Movies By Id 1",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": null,\r\n    \"title\": \"Serie 1\",\r\n    \"rating\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/characters/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters",
+								"1"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"image\": null,\n    \"title\": \"Magnum PI\",\n    \"created\": \"2022-06-29T18:44:37.22157\",\n    \"rating\": 1,\n    \"genres\": [\n        {\n            \"id\": 1,\n            \"name\": \"Comedia\",\n            \"image\": null,\n            \"motionPictures\": [\n                1\n            ]\n        }\n    ],\n    \"fictionalCharacters\": [\n        {\n            \"id\": 1,\n            \"name\": \"Juan Cervos\",\n            \"history\": \"Juan Carlos es un asalariado sin trabajo\",\n            \"image\": null,\n            \"age\": 3,\n            \"weigh\": 3,\n            \"series\": [\n                1\n            ]\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Movies By Id 1 Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN_JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"image\": null,\r\n    \"title\": \"Magnum PI\",\r\n    \"rating\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/movies/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update Movies By Id 1",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": null,\r\n    \"title\": \"Serie 1\",\r\n    \"rating\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/characters/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"image\": null,\n    \"title\": \"Magnum PI\",\n    \"created\": \"2022-06-29T18:44:37.22157\",\n    \"rating\": 1,\n    \"genres\": [\n        {\n            \"id\": 1,\n            \"name\": \"Comedia\",\n            \"image\": null,\n            \"motionPictures\": [\n                1\n            ]\n        }\n    ],\n    \"fictionalCharacters\": [\n        {\n            \"id\": 1,\n            \"name\": \"Juan Cervos\",\n            \"history\": \"Juan Carlos es un asalariado sin trabajo\",\n            \"image\": null,\n            \"age\": 3,\n            \"weigh\": 3,\n            \"series\": [\n                1\n            ]\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Movies",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN_JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"image\": null,\r\n    \"title\": \"Serie Informativa\",\r\n    \"rating\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Movies",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": null,\r\n    \"title\": \"Serie 1\",\r\n    \"rating\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/characters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": 3,\n    \"image\": null,\n    \"title\": \"Serie Informativa\",\n    \"created\": null,\n    \"rating\": 1,\n    \"genres\": [],\n    \"fictionalCharacters\": []\n}"
+				}
+			]
+		}
+	]
+}
