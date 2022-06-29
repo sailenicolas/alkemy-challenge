@@ -30,20 +30,22 @@ public class FictionalCharacter implements Serializable {
     @JsonView(Views.SearchCharacter.class)
     private String name;
     private String history;
+    @JsonView(Views.SearchCharacter.class)
+    private String image;
     private Integer age;
     private Integer weigh;
 
     @ManyToMany(mappedBy = "fictionalCharacters", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Collection<MotionPicture> series;
 
-    public FictionalCharacter(String name, String history, Integer age, Integer weigh) {
+    public FictionalCharacter(String name, String history, String image, Integer age, Integer weigh) {
 
         this.name = name;
         this.history = history;
+        this.image = image;
         this.age = age;
         this.weigh = weigh;
     }
-
 
     public void addMotionPicture(MotionPicture series) {
         this.series.add(series);

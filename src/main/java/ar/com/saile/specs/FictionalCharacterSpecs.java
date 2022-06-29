@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class FictionalCharacterSpecs implements Specification<FictionalCharacter> {
-    private final String title;
+    private final String name;
 
     private final String age;
 
@@ -19,7 +19,7 @@ public class FictionalCharacterSpecs implements Specification<FictionalCharacter
 
     public FictionalCharacterSpecs(Map<String, String> search) {
 
-        this.title = search.getOrDefault( "title", "" );
+        this.name = search.getOrDefault( "name", "" );
         this.movies = search.getOrDefault( "movies", "" );
         this.age = search.getOrDefault( "age", "" );
         this.predicates = new ArrayList<>();
@@ -27,14 +27,15 @@ public class FictionalCharacterSpecs implements Specification<FictionalCharacter
 
     @Override
     public Predicate toPredicate(Root<FictionalCharacter> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-        if (!this.title.isEmpty() && !this.title.isBlank()) {
+        if (!this.name.isEmpty() && !this.name.isBlank()) {
+            System.out.println( "this.name = " + this.name );
             //check if the text value can be casted to long.
             //if it is possible, then add the check to the query
             predicates.add( criteriaBuilder.like(
                             criteriaBuilder.lower(
                                     root.get( FictionalCharacter_.name )
                             ),
-                            "%" + this.title.toLowerCase() + "%"
+                            "%" + this.name.toLowerCase() + "%"
                     )
             );
         } else if (!this.movies.isBlank() && !this.movies.isEmpty()) {

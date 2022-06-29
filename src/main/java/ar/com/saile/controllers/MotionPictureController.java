@@ -22,7 +22,7 @@ public class MotionPictureController {
     private final MotionPictureService motionPictureService;
     @GetMapping(path = "")
     @JsonView(Views.SearchMotionPicture.class)
-    public ResponseEntity<?> getSeries(
+    public ResponseEntity<?> searchMotionPictures(
             @RequestParam(defaultValue = "0", name = "page") int page,
             @RequestParam(defaultValue = "asc", name = "order") String order,
             @RequestParam(defaultValue = "", name = "genre", required = false) String genre,
@@ -33,7 +33,7 @@ public class MotionPictureController {
     }
 
     @GetMapping(path = "", params = {"!title", "!genre"})
-    public ResponseEntity<?> getCharacters(
+    public ResponseEntity<?> getMotionPictures(
             @RequestParam(defaultValue = "0", name = "page") int page,
             @RequestParam(defaultValue = "asc", name = "order") String order){
         Page<MotionPicture> series = motionPictureService.findAll(page, order);
@@ -41,11 +41,11 @@ public class MotionPictureController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getSerie(@PathVariable Long id){
+    public ResponseEntity<?> getMotionPicture(@PathVariable Long id){
         return ResponseEntity.ok( motionPictureService.findById(id));
     }
     @PostMapping("/")
-    public ResponseEntity<?> createSerie(@Valid @RequestBody final MotionPicture serie, BindingResult bindingResult){
+    public ResponseEntity<?> createMotionPicture(@Valid @RequestBody final MotionPicture serie, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             throw new BindingResultException(bindingResult);
         }
@@ -53,7 +53,7 @@ public class MotionPictureController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateSerie(@PathVariable Long id, @Valid @RequestBody final MotionPicture serie, BindingResult bindingResult){
+    public ResponseEntity<?> updateMotionPicture(@PathVariable Long id, @Valid @RequestBody final MotionPicture serie, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             throw new BindingResultException(bindingResult);
         }
@@ -62,7 +62,7 @@ public class MotionPictureController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteSerie(@PathVariable Long id){
+    public ResponseEntity<?> deleteMotionPicture(@PathVariable Long id){
         motionPictureService.delete(id);
         return ResponseEntity.noContent().build();
     }

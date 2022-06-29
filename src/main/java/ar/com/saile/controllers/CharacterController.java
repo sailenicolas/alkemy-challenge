@@ -32,14 +32,14 @@ public class CharacterController {
             @RequestParam(defaultValue = "0", name = "page") int page,
             @RequestParam(defaultValue = "asc", name = "order") String order,
             @RequestParam(defaultValue = "", name = "age", required = false) String age,
-            @RequestParam(defaultValue = "", name = "title", required = false) String title,
+            @RequestParam(defaultValue = "", name = "name", required = false) String name,
             @RequestParam(defaultValue = "", name = "movies", required = false) String movies){
-        Map<String, String> search = Map.of("order",order, "age",age, "title",title, "movies", movies);
+        Map<String, String> search = Map.of("order",order, "age",age, "name",name, "movies", movies);
         List<FictionalCharacter> series = fictionalCharacterService.searchAll(page, search);
         return ResponseEntity.ok(series);
     }
 
-    @GetMapping(path = "", params = {"!title", "!age", "!movies"})
+    @GetMapping(path = "", params = {"!name", "!age", "!movies"})
     public ResponseEntity<?> getCharacters(
             @RequestParam(defaultValue = "0", name = "page") int page,
             @RequestParam(defaultValue = "asc", name = "order") String order){
@@ -48,39 +48,39 @@ public class CharacterController {
     }
 
 
-    @GetMapping(path = {"/characters/{id}"})
+    @GetMapping(path = {"/{id}"})
     public ResponseEntity<?> getFictional(@PathVariable Long id) {
         FictionalCharacter fictionalCharacterCollection = fictionalCharacterService.findById(id);
         return ResponseEntity.ok(fictionalCharacterCollection);
     }
 
 
-    @PostMapping(path = {"/{fictionalPathTypeVariable}/{idMotionPicture}/characters/{idCharacter}"})
-    public ResponseEntity<?> createFictionalByType(@PathVariable FictionalPathTypeVariable fictionalPathTypeVariable, @PathVariable Long idMotionPicture,@PathVariable Long idCharacter ,HttpServletResponse response) {
-        Collection<FictionalCharacter> fictionalCharacterCollection = fictionalCharacterService.CreateByMotioPictureIdAndCharacterId(fictionalPathTypeVariable, idMotionPicture, idCharacter);
+    @PostMapping(path = {"/{idCharacter}/movies/{idMotionPicture}/"})
+    public ResponseEntity<?> createFictionalByType(@PathVariable Long idMotionPicture,@PathVariable Long idCharacter ,HttpServletResponse response) {
+        Collection<FictionalCharacter> fictionalCharacterCollection = fictionalCharacterService.createByMotionPictureIdAndCharacterId(idMotionPicture, idCharacter);
         return ResponseEntity.ok(fictionalCharacterCollection);
     }
-    @DeleteMapping(path = {"/{fictionalPathTypeVariable}/{idMotionPicture}/characters/{idCharacter}"})
-    public ResponseEntity<?> deleteFictional(@PathVariable FictionalPathTypeVariable fictionalPathTypeVariable, @PathVariable Long idMotionPicture, @PathVariable Long idCharacter) {
-        Collection<FictionalCharacter> fictionalCharacterCollection = fictionalCharacterService.deleteByMotionPictureIdAndCharacterId(fictionalPathTypeVariable, idMotionPicture,idCharacter);
+    @DeleteMapping(path = {"{idCharacter}/movies/{idMotionPicture}/"})
+    public ResponseEntity<?> deleteFictional(@PathVariable Long idMotionPicture, @PathVariable Long idCharacter) {
+        Collection<FictionalCharacter> fictionalCharacterCollection = fictionalCharacterService.deleteByMotionPictureIdAndCharacterId(idMotionPicture,idCharacter);
 
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(path = {"/characters/{id}"})
+    @PutMapping(path = {"/{id}"})
     public ResponseEntity<?> updateFictional(@PathVariable Long id, @Valid @RequestBody FictionalCharacter fictionalCharacter, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             throw new BindingResultException(bindingResult);
         }
-        FictionalCharacter fictionalCharacterCollection = fictionalCharacterService.updateFictional(id, fictionalCharacter);
-        return ResponseEntity.ok(fictionalCharacterCollection);
+        FictionalCharacter updateFictional = fictionalCharacterService.updateFictional(id, fictionalCharacter);
+        return ResponseEntity.ok(updateFictional);
     }
-    @DeleteMapping(path = {"/characters/{id}"})
+    @DeleteMapping(path = {"/{id}"})
     public ResponseEntity<?> deleteFictional(@PathVariable Long id) {
         fictionalCharacterService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-    @PostMapping(path = {"/characters/"}, consumes = {APPLICATION_JSON_VALUE})
+    @PostMapping(path = {"/"}, consumes = {APPLICATION_JSON_VALUE})
     public ResponseEntity<?> createFictional(@Valid @RequestBody FictionalCharacter fictionalCharacter, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             throw new BindingResultException(bindingResult);

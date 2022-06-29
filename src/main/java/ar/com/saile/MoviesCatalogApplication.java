@@ -27,8 +27,9 @@ public class MoviesCatalogApplication {
             userService.save(appUser1);
             Genre genre = new Genre( "Comedia",null);
             Genre genre1 = new Genre( "Dark",null);
-            FictionalCharacter fictionalCharacter = new FictionalCharacter("hhol", "yyhhhhhhh hyyy kkjj", 3, 3);
+            FictionalCharacter fictionalCharacter = new FictionalCharacter("Juan Carlos","Juan Carlos es un asalariado sin trabajo",null,  3, 3);
 
+            FictionalCharacter fictionalCharacter1 = new FictionalCharacter("Juan Ismael", "Juan Ismael es un asalariado con trabajo",null, 3, 3);
             MotionPicture movie = new MotionPicture("Serie 1", null, LocalDateTime.now(), 1);
             movie.addFictionalCharacters(fictionalCharacter);
             movie.addGenre( genre );
@@ -37,7 +38,8 @@ public class MoviesCatalogApplication {
 
             MotionPicture serie = new MotionPicture("Games of thrones",null, LocalDateTime.now(), 5);
 
-            serie.addFictionalCharacters(new FictionalCharacter("not", "lol", 1,1));
+            serie.addFictionalCharacters(new FictionalCharacter("John", "John es un civil",null, 1,1));
+            serie.addFictionalCharacters( fictionalCharacter1 );
 
             serie.addGenre( genre1 );
             serie.addGenre( new Genre("Algo", "") );

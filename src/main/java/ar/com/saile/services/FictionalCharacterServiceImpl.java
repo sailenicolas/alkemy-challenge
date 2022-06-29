@@ -3,6 +3,7 @@ package ar.com.saile.services;
 import ar.com.saile.component.FictionalPathTypeVariable;
 import ar.com.saile.component.Utils;
 import ar.com.saile.domain.FictionalCharacter;
+import ar.com.saile.domain.MotionPicture;
 import ar.com.saile.exceptions.NotDeletedException;
 import ar.com.saile.repositories.CharacterRepository;
 import ar.com.saile.repositories.MotionPictureRepository;
@@ -13,25 +14,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
 public class FictionalCharacterServiceImpl implements FictionalCharacterService {
     private final MotionPictureRepository motionPictureRepository;
     private final CharacterRepository characterRepository;
-
-    @Override
-    public Collection<FictionalCharacter> CreateByMotioPictureIdAndCharacterId(FictionalPathTypeVariable fictionalPathTypeVariable, Long id, Long idCharacter) throws RecordNotFoundException {
-        Collection<FictionalCharacter> fictionalCharacters = new ArrayList<>();
-        switch (fictionalPathTypeVariable) {
-            case MOVIES, SERIES -> fictionalCharacters = motionPictureRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("NOT FOUND")).getFictionalCharacters();
-        }
-        return fictionalCharacters;
-    }
 
     @Override
     public Collection<FictionalCharacter> createFictionalByType(FictionalPathTypeVariable typed, FictionalCharacter fictionalCharacter) {
@@ -42,7 +31,13 @@ public class FictionalCharacterServiceImpl implements FictionalCharacterService 
     @Override
     public FictionalCharacter updateFictional(Long id, FictionalCharacter fictionalCharacter) {
 
-        return null;
+        FictionalCharacter character = characterRepository.findById( id ).orElseThrow( () -> new RecordNotFoundException( "NOT FOUND" ) );
+        character.setAge( fictionalCharacter.getAge() );
+        character.setHistory( fictionalCharacter.getHistory() );
+        character.setWeigh( fictionalCharacter.getWeigh() );
+        character.setImage( fictionalCharacter.getImage() );
+        character.setName( fictionalCharacter.getName() );
+        return characterRepository.save(  character);
     }
 
     @Override
@@ -60,7 +55,7 @@ public class FictionalCharacterServiceImpl implements FictionalCharacterService 
     }
 
     @Override
-    public Collection<FictionalCharacter> deleteByMotionPictureIdAndCharacterId(FictionalPathTypeVariable fictionalPathTypeVariable, Long idMotionPicture, Long idCharacter) {
+    public Collection<FictionalCharacter> deleteByMotionPictureIdAndCharacterId(Long idMotionPicture, Long idCharacter) {
 
         return null;
     }
@@ -87,5 +82,15 @@ public class FictionalCharacterServiceImpl implements FictionalCharacterService 
     public Page<FictionalCharacter> findAll(int page, String order) {
         Pageable pageable = Utils.getPageable( page, order );
         return characterRepository.findAll(pageable);
+    }
+
+    @Override
+    public Collection<FictionalCharacter> createByMotionPictureIdAndCharacterId(Long idMotionPicture, Long idCharacter) {
+
+        MotionPicture motionPicture = motionPictureRepository.findById( idMotionPicture ).orElseThrow( () -> new RecordNotFoundException( "NOT FOUND" ) );
+        FictionalCharacter fictionalCharacterOpt = characterRepository.findById( idCharacter ).orElseThrow( () -> new RecordNotFoundException( "NOT FOUND" ) );
+        motionPicture.getFictionalCharacters().add( fictionalCharacterOpt );
+        motionPicture = motionPictureRepository.save( motionPicture );
+        return motionPicture.getFictionalCharacters();
     }
 }
