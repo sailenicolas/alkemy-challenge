@@ -51,7 +51,7 @@ public class FictionalCharacterSpecs implements Specification<FictionalCharacter
         }else if (!this.age.isBlank() && !this.age.isEmpty()) {
             query.distinct( true );
             try {
-                long longValue = Long.parseLong( this.age );
+                long longValue = Integer.parseInt( this.age );
                 predicates.add( criteriaBuilder.equal( root.get( FictionalCharacter_.age ), longValue ) );
             } catch (NumberFormatException e) {
                 //do nothing, the text is not long
