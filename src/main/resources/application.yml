@@ -1,7 +1,18 @@
-
 spring:
+  profiles:
+    active: dev
+---
+debug: false
+spring:
+  config:
+    activate:
+      on-profile: dev
+    name: dev
+  data:
+    rest:
+      detection-strategy: annotated
   datasource:
-    url: jdbc:mysql://localhost:3306/demo5?createDatabaseIfNotExist=true
+    url: ${DB_URL:jdbc:mysql://localhost:3306/demo5?createDatabaseIfNotExist=true}
     username: ${USER}
     password: ${PASSWORD}
   jpa:
@@ -19,16 +30,53 @@ spring:
   sql:
     init:
       mode: always
-  data:
-    rest:
-      detection-strategy: annotated
+server:
+  port: ${PORT:8080}
 jwt:
   key:
     private: classpath:app.key
     public: classpath:app.pub
-debug: false
 logging:
   level:
     sql: info
     web: info
     org.springframework.security: debug
+---
+debug: false
+spring:
+  config:
+    activate:
+      on-profile: production
+    name: production
+  data:
+    rest:
+      detection-strategy: annotated
+  datasource:
+    url: ${DB_URL}
+    username: ${USER}
+    password: ${PASSWORD}
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        dialect: ${DB_DIALECT}
+        format_sql: true
+    show-sql: false
+    open-in-view: true
+    hibernate:
+      ddl-auto: create
+  sql:
+    init:
+      mode: always
+server:
+  port: ${PORT:8080}
+jwt:
+  key:
+    private: classpath:app.key
+    public: classpath:app.pub
+logging:
+  level:
+    sql: info
+    web: info
