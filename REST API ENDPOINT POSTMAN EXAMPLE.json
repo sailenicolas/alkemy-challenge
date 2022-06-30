@@ -32,13 +32,14 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8080/login",
+					"raw": "http://localhost:8080/auth/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"auth",
 						"login"
 					]
 				}
@@ -90,6 +91,92 @@
 			]
 		},
 		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "john",
+							"type": "default"
+						},
+						{
+							"key": "",
+							"value": "john",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "john",
+									"type": "default"
+								},
+								{
+									"key": "",
+									"value": "john",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"jwt\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJzdWIiOiJqb2huIiwibmJmIjoxNjU2NTM3MTU5LCJpc3MiOiJsb2NhbGhvc3QiLCJleHAiOjE2NTY1NDc5NTksInVzZXJuYW1lIjoiam9obiJ9.kmsy11pT9Ws4XQD3394eMvXp48OkLh0YjZxU_vMsLANqBF_HMso19NWvdauFoQcXpXivMo9H40QOal58Gj3GKfE4Jij75zX-8fjHMiiNRbQERRYTle12CpqvbbKA0wA3COXgLCxMMEo4fGNxWWoV5MkXZlnUYctAm02mQpGf4nPU1CSITRqjRnG4qoUFpalqC9ZcWXTZjaOntxi5tFeE6f3DcGTtYawDgady56H7uJxyW6udvLf12Nanlvv1jI51Ibzd6hVIR82ojcGPxxjV9Yb-eGnni91GWV4hWrt7BE0cscv4oqYZOFX2mKAoJhUEMS5Hp8-3jt7YxQp-wSk76KA\"\n}"
+				}
+			]
+		},
+		{
 			"name": "Get Movies Like Name",
 			"request": {
 				"auth": {
@@ -124,7 +211,7 @@
 			},
 			"response": [
 				{
-					"name": "Get Movies Like Name",
+					"name": "Get Movies Like Name example",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -190,7 +277,7 @@
 			},
 			"response": [
 				{
-					"name": "Get Movies with Genre",
+					"name": "Get Movies with Genre example",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -256,7 +343,7 @@
 			},
 			"response": [
 				{
-					"name": "Get Characters like name",
+					"name": "Get Characters like name example",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -322,7 +409,7 @@
 			},
 			"response": [
 				{
-					"name": "Get Characters with Age",
+					"name": "Get Characters with Age example",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -382,7 +469,7 @@
 			},
 			"response": [
 				{
-					"name": "Get Characters",
+					"name": "Get Characters example",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -437,7 +524,7 @@
 			},
 			"response": [
 				{
-					"name": "Get Movies By Id",
+					"name": "Get Movies By Id example",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -502,7 +589,7 @@
 			},
 			"response": [
 				{
-					"name": "Create Characters",
+					"name": "Create Characters example",
 					"originalRequest": {
 						"method": "POST",
 						"header": [
@@ -582,7 +669,7 @@
 			},
 			"response": [
 				{
-					"name": "Update Characters By Id 1",
+					"name": "Update Characters By Id 1 example",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [
@@ -625,7 +712,7 @@
 			]
 		},
 		{
-			"name": "Delete FictionalCharacter Id 1 with Movie  Id 1",
+			"name": "Delete Character Id 1 with Movie  Id 1",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -657,7 +744,7 @@
 			},
 			"response": [
 				{
-					"name": "Delete FictionalCharacter Id 1 with Movie  Id 1",
+					"name": "Delete Character Id 1 with Movie  Id 1",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [
@@ -700,7 +787,7 @@
 			]
 		},
 		{
-			"name": "Add FictionalCharacter Id 1 with Movie  Id 1",
+			"name": "Add Character Id 1 with Movie  Id 1",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -732,7 +819,7 @@
 			},
 			"response": [
 				{
-					"name": "Delete FictionalCharacter Id 1 with Movie  Id 1",
+					"name": "Delete Character Id 1 with Movie  Id 1",
 					"originalRequest": {
 						"method": "POST",
 						"header": [
@@ -1060,6 +1147,279 @@
 					"header": null,
 					"cookie": [],
 					"body": "{\n    \"id\": 3,\n    \"image\": null,\n    \"title\": \"Serie Informativa\",\n    \"created\": null,\n    \"rating\": 1,\n    \"genres\": [],\n    \"fictionalCharacters\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Genre",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN_JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"image\": null,\r\n    \"name\": \"Aaaaa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/genres/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"genres",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Genre",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": null,\r\n    \"title\": \"Serie 1\",\r\n    \"rating\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/genres/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"genres",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": 3,\n    \"image\": null,\n    \"title\": \"Serie Informativa\",\n    \"created\": null,\n    \"rating\": 1,\n    \"genres\": [],\n    \"fictionalCharacters\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Genre By Id 1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN_JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/genres/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"genres",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Genre By Id 1",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/genres/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"genres",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Comedia\",\n    \"image\": null,\n    \"motionPictures\": [\n        {\n            \"id\": 1,\n            \"image\": null,\n            \"title\": \"Serie 1\",\n            \"created\": \"2022-06-30T13:42:48.702399\",\n            \"rating\": 1,\n            \"genres\": [\n                1\n            ],\n            \"fictionalCharacters\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Juan Carlos\",\n                    \"history\": \"Juan Carlos es un asalariado sin trabajo\",\n                    \"image\": null,\n                    \"age\": 3,\n                    \"weigh\": 3,\n                    \"series\": [\n                        1\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Genres",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN_JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/genres/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"genres",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Genres",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/genres",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"genres"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"name\": \"Comedia\",\n            \"image\": null,\n            \"motionPictures\": [\n                {\n                    \"id\": 1,\n                    \"image\": null,\n                    \"title\": \"Serie 1\",\n                    \"created\": \"2022-06-30T13:42:48.702399\",\n                    \"rating\": 1,\n                    \"genres\": [\n                        1\n                    ],\n                    \"fictionalCharacters\": [\n                        {\n                            \"id\": 1,\n                            \"name\": \"Juan Carlos\",\n                            \"history\": \"Juan Carlos es un asalariado sin trabajo\",\n                            \"image\": null,\n                            \"age\": 3,\n                            \"weigh\": 3,\n                            \"series\": [\n                                1\n                            ]\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Dark\",\n            \"image\": null,\n            \"motionPictures\": [\n                {\n                    \"id\": 2,\n                    \"image\": null,\n                    \"title\": \"Games of thrones\",\n                    \"created\": \"2022-06-30T13:42:48.724427\",\n                    \"rating\": 5,\n                    \"genres\": [\n                        2,\n                        {\n                            \"id\": 3,\n                            \"name\": \"Algo\",\n                            \"image\": \"\",\n                            \"motionPictures\": [\n                                2\n                            ]\n                        }\n                    ],\n                    \"fictionalCharacters\": [\n                        {\n                            \"id\": 2,\n                            \"name\": \"John\",\n                            \"history\": \"John es un civil\",\n                            \"image\": null,\n                            \"age\": 1,\n                            \"weigh\": 1,\n                            \"series\": [\n                                2\n                            ]\n                        },\n                        {\n                            \"id\": 3,\n                            \"name\": \"Juan Ismael\",\n                            \"history\": \"Juan Ismael es un asalariado con trabajo\",\n                            \"image\": null,\n                            \"age\": 3,\n                            \"weigh\": 3,\n                            \"series\": [\n                                2\n                            ]\n                        }\n                    ]\n                }\n            ]\n        },\n        3\n    ],\n    \"pageable\": {\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"offset\": 0,\n        \"pageSize\": 5,\n        \"pageNumber\": 0,\n        \"unpaged\": false,\n        \"paged\": true\n    },\n    \"last\": true,\n    \"totalElements\": 3,\n    \"totalPages\": 1,\n    \"size\": 5,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"first\": true,\n    \"numberOfElements\": 3,\n    \"empty\": false\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Genre By Id 1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ACCESS_TOKEN_JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"image\": null,\r\n    \"title\": \"Magnum PI\",\r\n    \"rating\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/movies/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update Movies By Id 1",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": null,\r\n    \"title\": \"Serie 1\",\r\n    \"rating\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/characters/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"image\": null,\n    \"title\": \"Magnum PI\",\n    \"created\": \"2022-06-29T18:44:37.22157\",\n    \"rating\": 1,\n    \"genres\": [\n        {\n            \"id\": 1,\n            \"name\": \"Comedia\",\n            \"image\": null,\n            \"motionPictures\": [\n                1\n            ]\n        }\n    ],\n    \"fictionalCharacters\": [\n        {\n            \"id\": 1,\n            \"name\": \"Juan Cervos\",\n            \"history\": \"Juan Carlos es un asalariado sin trabajo\",\n            \"image\": null,\n            \"age\": 3,\n            \"weigh\": 3,\n            \"series\": [\n                1\n            ]\n        }\n    ]\n}"
 				}
 			]
 		}

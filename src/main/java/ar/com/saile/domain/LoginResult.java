@@ -1,13 +1,5 @@
 package ar.com.saile.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+public record LoginResult (String jwt) {
 
-@Setter
-@Getter
-public class LoginResult {
-    private String jwt;
-    public LoginResult(String jwt) {
-        this.jwt = jwt;
-    }
 }

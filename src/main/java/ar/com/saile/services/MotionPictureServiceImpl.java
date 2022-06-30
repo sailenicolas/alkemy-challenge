@@ -2,8 +2,6 @@ package ar.com.saile.services;
 
 import ar.com.saile.component.Utils;
 import ar.com.saile.domain.MotionPicture;
-import ar.com.saile.exceptions.NotDeletedException;
-import ar.com.saile.exceptions.RecordNotFoundException;
 import ar.com.saile.repositories.MotionPictureRepository;
 import ar.com.saile.specs.MotionPictureSpecs;
 import lombok.RequiredArgsConstructor;

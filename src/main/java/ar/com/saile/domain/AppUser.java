@@ -1,5 +1,7 @@
 package ar.com.saile.domain;
 
+import ar.com.saile.views.Views;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +13,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -28,34 +31,54 @@ public class AppUser implements Serializable, UserDetails {
     @Column(name = ID, nullable = false)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @JsonView({Views.RegisterUserForm.class, Views.LoginUserForm.class, Views.RegisterResult.class})
     @NotBlank
     @NotNull
     private String username;
 
+    @JsonView({Views.RegisterResult.class})
+    private LocalDateTime createdAt = LocalDateTime.now();
+
     @Column(nullable = false)
     @NotBlank
     @NotNull
+    @JsonView({Views.LoginUserForm.class, Views.RegisterUserForm.class})
     private String password;
 
-    private Boolean isEnabled;
+    private Boolean isEnabled = false;
 
-    private Boolean isAccountNonExpired;
+    private Boolean isAccountNonExpired = false;
 
-    private Boolean isAccountNonLocked;
+    private Boolean isAccountNonLocked = false;
 
-    private Boolean isCredentialsNonExpired;
+    private Boolean isCredentialsNonExpired = false;
 
+    public AppUser(String username, String password, Boolean isEnabled, Boolean isAccountNonExpired, Boolean isAccountNonLocked, Boolean isCredentialsNonExpired) {
+
+        this.username = username;
+        this.password = password;
+        this.isEnabled = isEnabled;
+        this.isAccountNonExpired = isAccountNonExpired;
+        this.isAccountNonLocked = isAccountNonLocked;
+        this.isCredentialsNonExpired = isCredentialsNonExpired;
+    }
+
+    public void addRole(AppRole grantedAuthority) {
+
+        this.getRoleCollection().add( grantedAuthority );
+    }
 
     @ManyToMany(cascade = CascadeType.ALL)
     private Collection<AppRole> roleCollection = new ArrayList<>();
 
     public AppUser(String username) {
+
         this.username = username;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+
         return this.getRoleCollection();
     }
 
@@ -81,5 +104,18 @@ public class AppUser implements Serializable, UserDetails {
     public boolean isEnabled() {
 
         return this.isEnabled;
+    }
+
+    @Override
+    public String toString() {
+
+        return "AppUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", isEnabled=" + isEnabled +
+                ", isAccountNonExpired=" + isAccountNonExpired +
+                ", isAccountNonLocked=" + isAccountNonLocked +
+                ", isCredentialsNonExpired=" + isCredentialsNonExpired +
+                '}';
     }
 }

@@ -4,8 +4,7 @@ import ar.com.saile.component.FictionalPathTypeVariable;
 import ar.com.saile.component.Utils;
 import ar.com.saile.domain.FictionalCharacter;
 import ar.com.saile.domain.MotionPicture;
-import ar.com.saile.exceptions.NotDeletedException;
-import ar.com.saile.exceptions.RecordNotFoundException;
+import ar.com.saile.exceptions.RecordException;
 import ar.com.saile.repositories.CharacterRepository;
 import ar.com.saile.specs.FictionalCharacterSpecs;
 import lombok.AllArgsConstructor;
@@ -46,7 +45,7 @@ public class FictionalCharacterServiceImpl implements FictionalCharacterService 
         characterRepository.deleteById(id);
         boolean exists = characterRepository.existsById(id);
         if(exists)
-            throw new NotDeletedException("Not deleted");
+            throw new RecordException.NotDeletedException("Not deleted");
     }
 
     @Override
@@ -67,7 +66,7 @@ public class FictionalCharacterServiceImpl implements FictionalCharacterService 
     @Override
     public FictionalCharacter findById(Long id) {
 
-        return characterRepository.findById(id).orElseThrow(()->new RecordNotFoundException("NOT FOUND"));
+        return characterRepository.findById(id).orElseThrow(()-> new RecordException.RecordNotFoundException("NOT FOUND") );
     }
 
     @Override

@@ -10,8 +10,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import ar.com.saile.domain.Genre;
-import ar.com.saile.exceptions.NotDeletedException;
-import ar.com.saile.exceptions.RecordNotFoundException;
 import ar.com.saile.repositories.GenreRepository;
 
 import java.util.ArrayList;

@@ -30,7 +30,7 @@ public class WebApiSecurityConfig {
         http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests()
-                .antMatchers("/login", "/error")
+                .antMatchers("/auth/login", "/error", "/auth/register")
                 .permitAll();
         http.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
         http.authorizeRequests().anyRequest()

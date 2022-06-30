@@ -39,7 +39,6 @@ public class MotionPicture implements Serializable {
     @JsonView(Views.SearchMotionPicture.class)
     private LocalDateTime created = LocalDateTime.now();
 
-    @NotBlank
     @NotNull
     private Integer rating;
 

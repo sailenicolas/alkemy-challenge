@@ -4,6 +4,7 @@ import ar.com.saile.domain.AppUser;
 import ar.com.saile.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Example;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,9 +29,12 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    private AppUser findByUsername(String username) throws UsernameNotFoundException {
+    public AppUser findByUsername(String username) throws UsernameNotFoundException {
 
         return userRepository.findByUsername( username ).orElseThrow( () -> new UsernameNotFoundException( "Username not found" ) );
+    }
+    public boolean existsByUsername(AppUser appUser) throws UsernameNotFoundException {
+        return userRepository.findByUsername( appUser.getUsername() ).isPresent();
     }
 
     @Override

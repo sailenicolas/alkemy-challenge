@@ -11,8 +11,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.ArrayList;
-
 @SpringBootApplication
 public class MoviesCatalogApplication {
 
@@ -23,8 +21,8 @@ public class MoviesCatalogApplication {
     @Bean
     CommandLineRunner run(MotionPictureRepository motionPictureRepository, UserService userService) {
         return args -> {
-            AppUser appUser = new AppUser(null, "john", "password", true, true, true, true, new ArrayList<>());
-            AppUser appUser1 = new AppUser(null, "william", "password", true, true, true, true, new ArrayList<>());
+            AppUser appUser = new AppUser("john", "password", true, true, true, true);
+            AppUser appUser1 = new AppUser("william", "password", true, true, true, true);
             userService.save(appUser);
             userService.save(appUser1);
             Genre genre = new Genre( "Comedia",null);
