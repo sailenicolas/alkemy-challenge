@@ -4,6 +4,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
+@Deprecated
 public class EnumPathVariableConverter implements Converter<String, FictionalPathTypeVariable> {
 
     @Override

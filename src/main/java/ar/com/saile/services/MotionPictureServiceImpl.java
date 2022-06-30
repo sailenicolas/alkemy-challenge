@@ -11,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -26,8 +25,9 @@ public class MotionPictureServiceImpl implements MotionPictureService {
     }
 
     @Override
-    public List<MotionPicture> findAll(Integer page, Map<String, String> search) {
-        return motionPictureRepository.findAll(new MotionPictureSpecs( search ));
+    public Page<MotionPicture> findAll(Integer page, Map<String, String> search) {
+        Pageable pageRequest = Utils.getPageable(page, search.get( "order") );
+        return motionPictureRepository.findAll(new MotionPictureSpecs( search ), pageRequest);
     }
 
     @Override

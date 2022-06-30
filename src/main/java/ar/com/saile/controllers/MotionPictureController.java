@@ -28,15 +28,7 @@ public class MotionPictureController {
             @RequestParam(defaultValue = "", name = "genre", required = false) String genre,
             @RequestParam(defaultValue = "", name = "title", required = false) String title){
         Map<String, String> search = Map.of("order",order, "genre",genre, "title",title);
-        List<MotionPicture> series = motionPictureService.findAll(page, search);
-        return ResponseEntity.ok(series);
-    }
-
-    @GetMapping(path = "", params = {"!title", "!genre"})
-    public ResponseEntity<?> getMotionPictures(
-            @RequestParam(defaultValue = "0", name = "page") int page,
-            @RequestParam(defaultValue = "asc", name = "order") String order){
-        Page<MotionPicture> series = motionPictureService.findAll(page, order);
+        Page<MotionPicture> series = motionPictureService.findAll(page, search);
         return ResponseEntity.ok(series);
     }
 

@@ -6,6 +6,8 @@ import lombok.*;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -27,12 +29,24 @@ public class FictionalCharacter implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = ID_COLUMN, nullable = false)
     private Long id;
-    @JsonView(Views.SearchCharacter.class)
+
+    @JsonView({Views.SearchCharacter.class})
+    @NotBlank
+    @NotNull
     private String name;
+
+    @NotBlank
+    @NotNull
     private String history;
-    @JsonView(Views.SearchCharacter.class)
+
+    @JsonView({Views.SearchCharacter.class})
+
     private String image;
+
+    @NotBlank
+    @NotNull
     private Integer age;
+
     private Integer weigh;
 
     @ManyToMany(mappedBy = "fictionalCharacters", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -48,11 +62,13 @@ public class FictionalCharacter implements Serializable {
     }
 
     public void addMotionPicture(MotionPicture series) {
-        this.getSeries().add(series);
+
+        this.getSeries().add( series );
     }
 
     public void deleteMotionPicture(MotionPicture series) {
-        this.getSeries().remove(series);
+
+        this.getSeries().remove( series );
     }
 
     @Override

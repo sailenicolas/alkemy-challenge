@@ -5,10 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,9 +29,13 @@ public class AppUser implements Serializable, UserDetails {
     private Long id;
 
     @Column(unique = true, nullable = false)
+    @NotBlank
+    @NotNull
     private String username;
 
     @Column(nullable = false)
+    @NotBlank
+    @NotNull
     private String password;
 
     private Boolean isEnabled;
@@ -38,6 +43,7 @@ public class AppUser implements Serializable, UserDetails {
     private Boolean isAccountNonExpired;
 
     private Boolean isAccountNonLocked;
+
     private Boolean isCredentialsNonExpired;
 
 

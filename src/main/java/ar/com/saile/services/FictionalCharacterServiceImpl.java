@@ -74,7 +74,8 @@ public class FictionalCharacterServiceImpl implements FictionalCharacterService 
     public Page<FictionalCharacter> findAll(int page, Map<String, String> search) {
 
         Pageable pageable = Utils.getPageable( page, search.get( "order" ) );
-        return characterRepository.findAll(new FictionalCharacterSpecs(search ), pageable );
+        return characterRepository.findAll( new FictionalCharacterSpecs( search ), pageable );
+
     }
 
     @Override

@@ -18,7 +18,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("/genres")
 public class GenreController {
     private final GenreService genreService;
-    @GetMapping(path = "/")
+    @GetMapping(path = "")
     public ResponseEntity<?> getGenres(@RequestParam(defaultValue = "0", name = "page", required = false) int page,
                                        @RequestParam(defaultValue = "asc", name = "order", required = false) String order){
         Page<Genre> genres = genreService.findAll(page, order);

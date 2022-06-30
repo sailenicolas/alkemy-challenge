@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,25 +30,30 @@ public class Genre implements Serializable {
     @Column(name = ID, nullable = false)
     private Long id;
 
+    @NotNull
+    @NotBlank
     private String name;
 
     private String image;
 
     @ManyToMany(mappedBy = "genres")
-    private Collection<MotionPicture> motionPictures = new ArrayList<>();
+    private Collection<MotionPicture> movies = new ArrayList<>();
 
     public Genre(String name, String image) {
 
-        this.image = image;
         this.name = name;
+
+        this.image = image;
     }
 
     public void addMotionPicture(MotionPicture motionPicture) {
 
-        this.getMotionPictures().add(motionPicture);
+        this.getMovies().add( motionPicture );
     }
+
     public void deleteMotionPicture(MotionPicture motionPicture) {
-        this.getMotionPictures().remove(motionPicture);
+
+        this.getMovies().remove( motionPicture );
     }
 
 

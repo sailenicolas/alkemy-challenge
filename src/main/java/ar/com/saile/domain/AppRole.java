@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
@@ -23,6 +25,8 @@ public class AppRole implements Serializable, GrantedAuthority {
     @Column(name = ID, nullable = false)
     private Long id;
 
+    @NotBlank
+    @NotNull
     private String name;
 
     @Override

@@ -112,7 +112,7 @@ class GenreServiceImplTest {
 
         Genre genre = new Genre();
         genre.setImage( "Image" );
-        genre.setMotionPictures( new ArrayList<>() );
+        genre.setMovies( new ArrayList<>() );
         genre.setName( "Name" );
         Optional<Genre> ofResult = Optional.of( genre );
         when( genreRepository.findById( (Long) any() ) ).thenReturn( ofResult );
@@ -150,13 +150,13 @@ class GenreServiceImplTest {
 
         Genre genre = new Genre();
         genre.setImage( "Image" );
-        genre.setMotionPictures( new ArrayList<>() );
+        genre.setMovies( new ArrayList<>() );
         genre.setName( "Name" );
         when( genreRepository.save( (Genre) any() ) ).thenReturn( genre );
 
         Genre genre1 = new Genre();
         genre1.setImage( "Image" );
-        genre1.setMotionPictures( new ArrayList<>() );
+        genre1.setMovies( new ArrayList<>() );
         genre1.setName( "Name" );
         assertSame( genre, genreServiceImpl.updateMovie( 123L, genre1 ) );
         verify( genreRepository ).save( (Genre) any() );
@@ -172,7 +172,7 @@ class GenreServiceImplTest {
 
         Genre genre = new Genre();
         genre.setImage( "Image" );
-        genre.setMotionPictures( new ArrayList<>() );
+        genre.setMovies( new ArrayList<>() );
         genre.setName( "Name" );
         assertThrows( NotDeletedException.class, () -> genreServiceImpl.updateMovie( 123L, genre ) );
         verify( genreRepository ).save( (Genre) any() );
@@ -224,13 +224,13 @@ class GenreServiceImplTest {
 
         Genre genre = new Genre();
         genre.setImage( "Image" );
-        genre.setMotionPictures( new ArrayList<>() );
+        genre.setMovies( new ArrayList<>() );
         genre.setName( "Name" );
         when( genreRepository.save( (Genre) any() ) ).thenReturn( genre );
 
         Genre genre1 = new Genre();
         genre1.setImage( "Image" );
-        genre1.setMotionPictures( new ArrayList<>() );
+        genre1.setMovies( new ArrayList<>() );
         genre1.setName( "Name" );
         assertSame( genre, genreServiceImpl.createMovie( genre1 ) );
         verify( genreRepository ).save( (Genre) any() );
@@ -246,7 +246,7 @@ class GenreServiceImplTest {
 
         Genre genre = new Genre();
         genre.setImage( "Image" );
-        genre.setMotionPictures( new ArrayList<>() );
+        genre.setMovies( new ArrayList<>() );
         genre.setName( "Name" );
         assertThrows( NotDeletedException.class, () -> genreServiceImpl.createMovie( genre ) );
         verify( genreRepository ).save( (Genre) any() );
@@ -260,13 +260,13 @@ class GenreServiceImplTest {
 
         Genre genre = new Genre();
         genre.setImage( "Image" );
-        genre.setMotionPictures( new ArrayList<>() );
+        genre.setMovies( new ArrayList<>() );
         genre.setName( "Name" );
         when( genreRepository.save( (Genre) any() ) ).thenReturn( genre );
 
         Genre genre1 = new Genre();
         genre1.setImage( "Image" );
-        genre1.setMotionPictures( new ArrayList<>() );
+        genre1.setMovies( new ArrayList<>() );
         genre1.setName( "Name" );
         assertSame( genre, genreServiceImpl.save( genre1 ) );
         verify( genreRepository ).save( (Genre) any() );
@@ -282,7 +282,7 @@ class GenreServiceImplTest {
 
         Genre genre = new Genre();
         genre.setImage( "Image" );
-        genre.setMotionPictures( new ArrayList<>() );
+        genre.setMovies( new ArrayList<>() );
         genre.setName( "Name" );
         assertThrows( NotDeletedException.class, () -> genreServiceImpl.save( genre ) );
         verify( genreRepository ).save( (Genre) any() );

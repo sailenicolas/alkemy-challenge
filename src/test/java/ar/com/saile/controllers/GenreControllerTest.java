@@ -48,13 +48,13 @@ class GenreControllerTest {
 
         Genre genre = new Genre();
         genre.setImage( "Image" );
-        genre.setMotionPictures( new ArrayList<>() );
+        genre.setMovies( new ArrayList<>() );
         genre.setName( "Name" );
         when( genreService.createMovie( (Genre) any() ) ).thenReturn( genre );
 
         Genre genre1 = new Genre();
         genre1.setImage( "Image" );
-        genre1.setMotionPictures( new ArrayList<>() );
+        genre1.setMovies( new ArrayList<>() );
         genre1.setName( "Name" );
         String content = (new ObjectMapper()).writeValueAsString( genre1 );
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post( "/genres/" )
@@ -83,7 +83,7 @@ class GenreControllerTest {
 
         Genre genre = new Genre();
         genre.setImage( "Image" );
-        genre.setMotionPictures( new ArrayList<>() );
+        genre.setMovies( new ArrayList<>() );
         genre.setName( "Name" );
         String content = (new ObjectMapper()).writeValueAsString( genre );
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post( "/genres/" )
@@ -135,7 +135,7 @@ class GenreControllerTest {
 
         Genre genre = new Genre();
         genre.setImage( "Image" );
-        genre.setMotionPictures( new ArrayList<>() );
+        genre.setMovies( new ArrayList<>() );
         genre.setName( "Name" );
         when( genreService.findById( (Long) any() ) ).thenReturn( genre );
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get( "/genres/{id}", 123L );
@@ -212,13 +212,13 @@ class GenreControllerTest {
 
         Genre genre = new Genre();
         genre.setImage( "Image" );
-        genre.setMotionPictures( new ArrayList<>() );
+        genre.setMovies( new ArrayList<>() );
         genre.setName( "Name" );
         when( genreService.updateMovie( (Long) any(), (Genre) any() ) ).thenReturn( genre );
 
         Genre genre1 = new Genre();
         genre1.setImage( "Image" );
-        genre1.setMotionPictures( new ArrayList<>() );
+        genre1.setMovies( new ArrayList<>() );
         genre1.setName( "Name" );
         String content = (new ObjectMapper()).writeValueAsString( genre1 );
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.put( "/genres/{id}", 123L )
@@ -247,7 +247,7 @@ class GenreControllerTest {
 
         Genre genre = new Genre();
         genre.setImage( "Image" );
-        genre.setMotionPictures( new ArrayList<>() );
+        genre.setMovies( new ArrayList<>() );
         genre.setName( "Name" );
         String content = (new ObjectMapper()).writeValueAsString( genre );
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.put( "/genres/{id}", 123L )

@@ -72,6 +72,9 @@ spring:
   sql:
     init:
       mode: always
+  jackson:
+    mapper:
+      default-view-inclusion: true
 server:
   port: ${PORT:8080}
 jwt:

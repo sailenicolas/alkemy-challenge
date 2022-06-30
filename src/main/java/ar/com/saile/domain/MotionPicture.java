@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,16 +24,25 @@ import java.util.Collection;
         property = "id"
 )
 public class MotionPicture implements Serializable {
+
     static final String ID = "id";
 
     @JsonView(Views.SearchMotionPicture.class)
-    protected String image;
-    @JsonView(Views.SearchMotionPicture.class)
-    protected String title;
-    @JsonView(Views.SearchMotionPicture.class)
-    protected LocalDateTime created;
+    @NotBlank
+    @NotNull
+    private String title;
 
-    protected Integer rating;
+    @JsonView(Views.SearchMotionPicture.class)
+    private String image;
+
+
+    @JsonView(Views.SearchMotionPicture.class)
+    private LocalDateTime created = LocalDateTime.now();
+
+    @NotBlank
+    @NotNull
+    private Integer rating;
+
     @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,33 +50,35 @@ public class MotionPicture implements Serializable {
     private Long id;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    protected Collection<Genre> genres = new ArrayList<>();
+    private Collection<Genre> genres = new ArrayList<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    protected Collection<FictionalCharacter> fictionalCharacters = new ArrayList<>();
+    private Collection<FictionalCharacter> fictionalCharacters = new ArrayList<>();
 
-    public MotionPicture(String title, String image, LocalDateTime created, int rating) {
-        this.created = created;
+    public MotionPicture(String title, String image, int rating) {
+
         this.title = title;
         this.image = image;
         this.rating = rating;
-
     }
 
     public void addFictionalCharacters(FictionalCharacter fictionalCharacters) {
 
-        this.fictionalCharacters.add( fictionalCharacters );
+        this.getFictionalCharacters().add( fictionalCharacters );
     }
 
     public void addGenre(Genre genre) {
 
-        this.genres.add(genre);
+        this.getGenres().add( genre );
     }
+
     public void deleteFictionalCharacters(FictionalCharacter fictionalCharacters) {
-            this.getFictionalCharacters().remove(fictionalCharacters);
+
+        this.getFictionalCharacters().remove( fictionalCharacters );
     }
 
     public void deleteGenre(Genre genre) {
-        this.getGenres().remove(genre);
+
+        this.getGenres().remove( genre );
     }
 }
