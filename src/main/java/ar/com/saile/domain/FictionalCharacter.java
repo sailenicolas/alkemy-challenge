@@ -48,7 +48,11 @@ public class FictionalCharacter implements Serializable {
     }
 
     public void addMotionPicture(MotionPicture series) {
-        this.series.add(series);
+        this.getSeries().add(series);
+    }
+
+    public void deleteMotionPicture(MotionPicture series) {
+        this.getSeries().remove(series);
     }
 
     @Override

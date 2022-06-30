@@ -61,4 +61,11 @@ public class MotionPicture implements Serializable {
 
         this.genres.add(genre);
     }
+    public void deleteFictionalCharacters(FictionalCharacter fictionalCharacters) {
+            this.getFictionalCharacters().remove(fictionalCharacters);
+    }
+
+    public void deleteGenre(Genre genre) {
+        this.getGenres().remove(genre);
+    }
 }

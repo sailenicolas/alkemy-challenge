@@ -41,9 +41,13 @@ public class Genre implements Serializable {
         this.name = name;
     }
 
-    public void addSerie(MotionPicture motionPicture) {
+    public void addMotionPicture(MotionPicture motionPicture) {
 
-        this.motionPictures.add(motionPicture);
+        this.getMotionPictures().add(motionPicture);
     }
+    public void deleteMotionPicture(MotionPicture motionPicture) {
+        this.getMotionPictures().remove(motionPicture);
+    }
+
 
 }

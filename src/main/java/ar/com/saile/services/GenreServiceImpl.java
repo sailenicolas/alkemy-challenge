@@ -29,10 +29,10 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public Genre updateMovie(Long id, Genre genre) {
-        Genre genre1 = new Genre();
-        genre1.setImage(genre.getImage());
-        genre1.setName(genre.getName());
-        return this.save(genre1);
+        Genre updateGenre = this.findById( id );
+        updateGenre.setImage(genre.getImage());
+        updateGenre.setName(genre.getName());
+        return this.save(updateGenre);
     }
 
     @Override
